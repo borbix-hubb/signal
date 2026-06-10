@@ -6,9 +6,8 @@
   <title>MTD Signal - เลือกห้อง</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
-      background-color: #0a0a0a;
+      background-color: #2C1810;
       font-family: 'Segoe UI', sans-serif;
       display: flex;
       justify-content: center;
@@ -16,38 +15,36 @@
       min-height: 100vh;
       padding: 20px;
     }
-
-    .container {
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-    }
-
+    .container { width: 100%; max-width: 400px; text-align: center; }
     .logo {
-      font-size: 32px;
+      font-size: 36px;
       font-weight: bold;
-      color: #FFD700;
-      letter-spacing: 4px;
-      margin-bottom: 8px;
+      color: #C9973A;
+      letter-spacing: 6px;
+      margin-bottom: 4px;
+      text-shadow: 0 0 20px rgba(201,151,58,0.5);
     }
-
     .subtitle {
-      color: #888;
-      font-size: 14px;
-      margin-bottom: 40px;
+      color: #9B7340;
+      font-size: 12px;
+      margin-bottom: 8px;
+      letter-spacing: 3px;
+    }
+    .brand {
+      color: #7a5a2a;
+      font-size: 10px;
       letter-spacing: 2px;
+      margin-bottom: 36px;
     }
-
     .divider {
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(to right, transparent, #FFD700, transparent);
-      margin: 0 auto 40px;
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #C9973A, transparent);
+      margin: 0 auto 36px;
     }
-
     .card {
-      background: #111;
-      border: 1px solid #222;
+      background: linear-gradient(145deg, #1a0e08, #251208);
+      border: 1px solid #3d2010;
       border-radius: 16px;
       padding: 28px 24px;
       margin-bottom: 16px;
@@ -56,50 +53,43 @@
       transition: all 0.3s ease;
       cursor: pointer;
     }
-
     .card:hover {
-      border-color: #FFD700;
+      border-color: #C9973A;
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.15);
+      box-shadow: 0 8px 30px rgba(201,151,58,0.2);
     }
-
     .card-badge {
       display: inline-block;
       font-size: 11px;
       font-weight: bold;
       letter-spacing: 2px;
-      padding: 4px 12px;
+      padding: 4px 14px;
       border-radius: 20px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
-
     .free .card-badge {
-      background: rgba(255, 215, 0, 0.1);
-      color: #FFD700;
-      border: 1px solid #FFD700;
+      background: rgba(201,151,58,0.15);
+      color: #C9973A;
+      border: 1px solid #C9973A;
     }
-
     .vip .card-badge {
-      background: rgba(255, 255, 255, 0.05);
-      color: #aaa;
-      border: 1px solid #444;
+      background: rgba(201,151,58,0.05);
+      color: #7a5a2a;
+      border: 1px solid #3d2010;
     }
-
     .card-title {
       font-size: 20px;
       font-weight: bold;
-      color: #fff;
       margin-bottom: 8px;
     }
-
+    .free .card-title { color: #C9973A; }
+    .vip .card-title { color: #9B7340; }
     .card-desc {
       font-size: 13px;
-      color: #666;
-      line-height: 1.6;
+      color: #6b4a2a;
+      line-height: 1.7;
+      margin-bottom: 4px;
     }
-
-    .free .card-title { color: #FFD700; }
-
     .btn {
       margin-top: 16px;
       display: inline-block;
@@ -109,34 +99,49 @@
       font-weight: bold;
       letter-spacing: 1px;
     }
-
     .free .btn {
-      background: #FFD700;
-      color: #000;
+      background: linear-gradient(135deg, #C9973A, #a87830);
+      color: #2C1810;
     }
-
     .vip .btn {
       background: transparent;
-      border: 1px solid #444;
-      color: #aaa;
+      border: 1px solid #3d2010;
+      color: #7a5a2a;
     }
-
+    .popup {
+      display: none;
+      margin-top: 12px;
+      background: linear-gradient(145deg, #1a0e08, #251208);
+      border: 1px solid #C9973A;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .popup-title {
+      color: #C9973A;
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    .popup-desc {
+      color: #7a5a2a;
+      font-size: 13px;
+      line-height: 1.8;
+    }
     .footer {
       margin-top: 32px;
-      color: #333;
-      font-size: 11px;
-      letter-spacing: 1px;
+      color: #4a2e10;
+      font-size: 10px;
+      letter-spacing: 2px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-
     <div class="logo">MTD</div>
     <div class="subtitle">SIGNAL ROOM</div>
+    <div class="brand">MONEY TALK TRADER</div>
     <div class="divider"></div>
 
-    <!-- ห้องฟรี -->
     <a class="card free" href="https://line.me/ti/g2/T7SNxNQe1sWsoAymh-vleGszkQDzO_8yVvrwtQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default">
       <div class="card-badge">FREE</div>
       <div class="card-title">ห้องซิก + ข่าวสาร</div>
@@ -144,30 +149,28 @@
       <div class="btn">เข้าห้องเลย →</div>
     </a>
 
-    <!-- ห้อง VIP -->
-    <div class="card vip" onclick="showVipMsg()">
+    <div class="card vip" onclick="toggleVip()">
       <div class="card-badge">VIP</div>
       <div class="card-title">ห้อง VIP</div>
       <div class="card-desc">สัญญาณพรีเมียม เฉพาะสมาชิก<br>ติดต่อแอดมินเพื่อเปิดพอร์ต</div>
       <div class="btn">สอบถามแอดมิน</div>
     </div>
 
-    <!-- popup vip -->
-    <div id="vipMsg" style="display:none; margin-top:16px; background:#111; border:1px solid #FFD700; border-radius:12px; padding:20px;">
-      <div style="color:#FFD700; font-weight:bold; margin-bottom:8px;">📩 ติดต่อแอดมิน</div>
-      <div style="color:#aaa; font-size:13px; line-height:1.8;">
+    <div class="popup" id="vipPopup">
+      <div class="popup-title">📩 ติดต่อแอดมิน</div>
+      <div class="popup-desc">
         ส่งข้อความหาแอดมินเพื่อเปิดพอร์ตเข้าห้อง VIP<br>
         และรับลิ้งเข้าห้องจากทางแอดมิน
       </div>
     </div>
 
-    <div class="footer">© MTD SIGNAL</div>
+    <div class="footer">© MTD SIGNAL · MONEY TALK TRADER</div>
   </div>
 
   <script>
-    function showVipMsg() {
-      const msg = document.getElementById('vipMsg');
-      msg.style.display = msg.style.display === 'none' ? 'block' : 'none';
+    function toggleVip() {
+      const p = document.getElementById('vipPopup');
+      p.style.display = p.style.display === 'block' ? 'none' : 'block';
     }
   </script>
 </body>
