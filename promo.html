@@ -7,101 +7,164 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      background: #0d0d0d;
+      background: #0a0a0a;
       font-family: 'Prompt', sans-serif;
       color: #fff;
       overflow-x: hidden;
     }
 
-    /* COUNTDOWN */
+    /* COUNTDOWN BAR */
     .countdown-bar {
-      background: #E8B84B;
-      padding: 10px 20px;
+      background: linear-gradient(90deg, #ff4444, #ff6b35, #ff4444);
+      background-size: 200% 100%;
+      animation: slideGrad 2s linear infinite;
+      padding: 12px 20px;
       text-align: center;
       font-size: 13px;
       font-weight: 600;
-      color: #0d0d0d;
+      color: #fff;
       letter-spacing: 1px;
     }
+    @keyframes slideGrad {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 200% 0%; }
+    }
+    .countdown-bar strong { font-size: 15px; }
 
     /* HERO */
     .hero {
-      background: #0d0d0d;
-      padding: 48px 24px 48px;
+      background: #0a0a0a;
+      padding: 52px 24px 52px;
       text-align: center;
       position: relative;
       overflow: hidden;
-      border-bottom: 1px solid #222;
     }
     .hero-glow {
       position: absolute;
-      top: -60px; left: 50%;
+      top: -80px; left: 50%;
       transform: translateX(-50%);
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(232,184,75,0.18) 0%, transparent 65%);
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(232,184,75,0.15) 0%, transparent 65%);
       pointer-events: none;
+      animation: pulse 3s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+      50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
     }
     .hero-badge {
       display: inline-block;
-      background: rgba(232,184,75,0.12);
-      border: 1px solid rgba(232,184,75,0.4);
-      color: #E8B84B;
+      background: rgba(255,68,68,0.15);
+      border: 1px solid rgba(255,68,68,0.5);
+      color: #ff6b6b;
       font-size: 11px;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 4px;
       padding: 6px 18px;
       border-radius: 4px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
+      animation: blink 1.5s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
     }
     .hero-logo {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 80px;
+      font-size: 88px;
       color: #E8B84B;
       letter-spacing: 16px;
       line-height: 1;
       text-shadow:
-        0 0 40px rgba(232,184,75,0.5),
-        0 0 80px rgba(232,184,75,0.2);
+        0 0 40px rgba(232,184,75,0.6),
+        0 0 80px rgba(232,184,75,0.3),
+        0 0 120px rgba(232,184,75,0.1);
       margin-bottom: 4px;
     }
     .hero-title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 28px;
-      color: #fff;
-      letter-spacing: 6px;
-      margin-bottom: 28px;
+      font-size: 26px;
+      color: #aaa;
+      letter-spacing: 8px;
+      margin-bottom: 32px;
     }
     .hero-price-box {
       display: inline-block;
-      background: linear-gradient(135deg, #1a1a1a, #222);
-      border: 1px solid #333;
+      background: linear-gradient(135deg, #151500, #1f1a00);
+      border: 1px solid #E8B84B;
       border-radius: 16px;
-      padding: 20px 36px;
-      margin-bottom: 12px;
+      padding: 20px 40px;
+      position: relative;
+      box-shadow: 0 0 30px rgba(232,184,75,0.15), inset 0 0 30px rgba(232,184,75,0.05);
     }
     .hero-price-label {
       font-size: 12px;
-      color: #666;
+      color: #888;
       letter-spacing: 2px;
       margin-bottom: 6px;
     }
     .hero-price-amount {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 56px;
+      font-size: 64px;
       color: #E8B84B;
       letter-spacing: 4px;
       line-height: 1;
-      text-shadow: 0 0 20px rgba(232,184,75,0.4);
+      text-shadow: 0 0 30px rgba(232,184,75,0.5);
     }
     .hero-price-sub {
       font-size: 12px;
-      color: #555;
-      margin-top: 4px;
+      color: #666;
+      margin-top: 6px;
+    }
+
+    /* DEADLINE HIGHLIGHT */
+    .deadline-box {
+      margin: 32px 20px 0;
+      background: linear-gradient(135deg, #1a0000, #200000);
+      border: 2px solid #ff4444;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255,68,68,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .deadline-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,68,68,0.05), transparent);
+      animation: shimmer 2s linear infinite;
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    .deadline-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: #ff6b6b;
+      margin-bottom: 8px;
+    }
+    .deadline-text {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .deadline-text span { color: #ff4444; }
+    .deadline-countdown {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: #ff6b6b;
+      letter-spacing: 4px;
     }
 
     /* BENEFITS */
-    .benefits { padding: 40px 20px 24px; }
+    .benefits { padding: 36px 20px 24px; }
     .section-label {
       font-size: 11px;
       font-weight: 500;
@@ -112,24 +175,25 @@
     }
     .benefit-card {
       background: #111;
-      border: 1px solid #222;
+      border: 1px solid #1e1e1e;
       border-radius: 14px;
       padding: 18px 20px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       transition: all 0.3s;
     }
     .benefit-card:hover {
       border-color: #E8B84B;
-      background: #161616;
+      background: #151500;
       box-shadow: 0 4px 24px rgba(232,184,75,0.1);
+      transform: translateX(4px);
     }
     .benefit-emoji {
-      width: 46px; height: 46px;
-      background: linear-gradient(135deg, #1a1a00, #2a2000);
-      border: 1px solid #333;
+      width: 44px; height: 44px;
+      background: #1a1a00;
+      border: 1px solid #2a2a00;
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -142,10 +206,10 @@
       font-size: 14px;
       font-weight: 600;
       color: #fff;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
     .benefit-content span {
-      font-size: 12px;
+      font-size: 11px;
       color: #555;
       font-weight: 300;
     }
@@ -166,16 +230,16 @@
     .condition {
       margin: 0 20px 20px;
       background: #111;
-      border: 1px solid #2a2000;
+      border: 1px solid #222;
       border-radius: 14px;
-      padding: 20px;
+      padding: 18px 20px;
     }
     .condition-title {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       color: #E8B84B;
-      margin-bottom: 10px;
-      letter-spacing: 1px;
+      margin-bottom: 8px;
+      letter-spacing: 2px;
     }
     .condition-text {
       font-size: 13px;
@@ -185,76 +249,76 @@
     }
     .condition-text strong { color: #E8B84B; font-weight: 600; }
 
-    /* URGENCY */
-    .urgency {
-      margin: 0 20px 28px;
-      background: linear-gradient(135deg, #1a0000, #110000);
-      border: 1px solid #330000;
-      border-radius: 14px;
-      padding: 16px 20px;
-      text-align: center;
-    }
-    .urgency-text {
-      font-size: 13px;
-      color: #ff6b6b;
-      font-weight: 500;
-    }
-    .urgency-text strong { font-weight: 700; color: #ff4444; }
-
     /* CTA */
-    .cta-section { padding: 0 20px 40px; }
+    .cta-section { padding: 8px 20px 48px; }
     .btn-primary {
       display: block;
       width: 100%;
-      padding: 18px;
+      padding: 20px;
       background: linear-gradient(135deg, #E8B84B, #C9973A);
-      color: #0d0d0d;
-      font-size: 17px;
+      color: #0a0a0a;
+      font-size: 18px;
       font-weight: 700;
       border: none;
       border-radius: 14px;
       cursor: pointer;
       font-family: 'Prompt', sans-serif;
-      box-shadow: 0 6px 30px rgba(232,184,75,0.35);
+      box-shadow: 0 8px 32px rgba(232,184,75,0.4);
       transition: all 0.3s;
       text-decoration: none;
       text-align: center;
       margin-bottom: 12px;
       letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: -50%; left: -60%;
+      width: 40%; height: 200%;
+      background: rgba(255,255,255,0.2);
+      transform: skewX(-20deg);
+      animation: shine 3s ease-in-out infinite;
+    }
+    @keyframes shine {
+      0% { left: -60%; }
+      100% { left: 120%; }
     }
     .btn-primary:active { transform: scale(0.98); }
     .btn-secondary {
       display: block;
       width: 100%;
-      padding: 15px;
+      padding: 16px;
       background: transparent;
-      color: #E8B84B;
+      color: #aaa;
       font-size: 14px;
       font-weight: 500;
-      border: 1px solid #333;
+      border: 1px solid #2a2a2a;
       border-radius: 14px;
       cursor: pointer;
       font-family: 'Prompt', sans-serif;
       text-align: center;
       transition: all 0.3s;
     }
-    .btn-secondary:hover { border-color: #E8B84B; }
+    .btn-secondary:hover { border-color: #555; color: #fff; }
 
     /* POPUP */
     .overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.85);
       z-index: 100;
       justify-content: center;
       align-items: flex-end;
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(8px);
     }
     .overlay.show { display: flex; }
     .popup {
       background: #111;
       border: 1px solid #222;
+      border-top: 2px solid #E8B84B;
       border-radius: 24px 24px 0 0;
       padding: 28px 24px 48px;
       width: 100%;
@@ -268,25 +332,14 @@
       margin: 0 auto 24px;
     }
     .popup-icon { font-size: 44px; margin-bottom: 12px; }
-    .popup-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-    .popup-desc {
-      font-size: 13px;
-      color: #555;
-      line-height: 1.7;
-      margin-bottom: 24px;
-      font-weight: 300;
-    }
+    .popup-title { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .popup-desc { font-size: 13px; color: #555; line-height: 1.7; margin-bottom: 24px; font-weight: 300; }
     .popup-btn {
       display: block;
       width: 100%;
-      padding: 15px;
+      padding: 16px;
       background: linear-gradient(135deg, #E8B84B, #C9973A);
-      color: #0d0d0d;
+      color: #0a0a0a;
       font-size: 15px;
       font-weight: 700;
       border: none;
@@ -297,32 +350,28 @@
       text-decoration: none;
       text-align: center;
     }
-    .popup-close {
-      font-size: 13px;
-      color: #444;
-      cursor: pointer;
-      padding: 8px;
-      display: block;
-    }
+    .popup-close { font-size: 13px; color: #444; cursor: pointer; padding: 8px; display: block; }
 
     .footer {
       text-align: center;
       padding: 0 20px 32px;
       font-size: 10px;
-      color: #333;
+      color: #2a2a2a;
       letter-spacing: 3px;
     }
   </style>
 </head>
 <body>
 
+  <!-- COUNTDOWN BAR -->
   <div class="countdown-bar">
-    ⏰ &nbsp;โปรนี้มีถึงสิ้นเดือนนี้ — <strong id="countdown">กำลังนับ...</strong>
+    🔥 &nbsp;ปิดรับสมัคร — <strong id="countdown-top">กำลังนับ...</strong>
   </div>
 
+  <!-- HERO -->
   <div class="hero">
     <div class="hero-glow"></div>
-    <div class="hero-badge">✦ &nbsp;LIMITED OFFER&nbsp; ✦</div>
+    <div class="hero-badge">🚨 &nbsp;LIMITED TIME OFFER</div>
     <div class="hero-logo">MTD</div>
     <div class="hero-title">TRADER PRIVILEGE</div>
     <div class="hero-price-box">
@@ -332,6 +381,14 @@
     </div>
   </div>
 
+  <!-- DEADLINE -->
+  <div class="deadline-box">
+    <div class="deadline-title">⚠️ &nbsp;ปิดรับสมัคร</div>
+    <div class="deadline-text">สิ้นเดือน<span>มิถุนายน 2569</span>นี้เท่านั้น</div>
+    <div class="deadline-countdown" id="countdown-main">00 : 00 : 00 : 00</div>
+  </div>
+
+  <!-- BENEFITS -->
   <div class="benefits">
     <div class="section-label">สิทธิ์ที่คุณจะได้รับ</div>
 
@@ -354,6 +411,15 @@
     </div>
 
     <div class="benefit-card">
+      <div class="benefit-emoji">💎</div>
+      <div class="benefit-content">
+        <strong>VIP Signal</strong>
+        <span>รับซิกพรีเมียม 10 ซิกขึ้นไป/เดือน</span>
+      </div>
+      <div class="benefit-tag">VIP Only</div>
+    </div>
+
+    <div class="benefit-card">
       <div class="benefit-emoji">👥</div>
       <div class="benefit-content">
         <strong>MTD Community</strong>
@@ -363,6 +429,7 @@
     </div>
   </div>
 
+  <!-- CONDITION -->
   <div class="condition">
     <div class="condition-title">⚡ เงื่อนไขการรักษาสิทธิ์</div>
     <div class="condition-text">
@@ -371,12 +438,7 @@
     </div>
   </div>
 
-  <div class="urgency">
-    <div class="urgency-text">
-      🔥 โปรนี้ปิดรับ <strong>สิ้นเดือนนี้เท่านั้น</strong> — อย่าพลาด
-    </div>
-  </div>
-
+  <!-- CTA -->
   <div class="cta-section">
     <a href="https://borbix-hubb.github.io/mtd-indicator/landing-page.html" class="btn-primary">
       🚀 &nbsp;รับสิทธิ์เลยตอนนี้
@@ -388,6 +450,7 @@
 
   <div class="footer">© MTD SIGNAL · MONEY TALK TRADER</div>
 
+  <!-- POPUP -->
   <div class="overlay" id="overlay" onclick="hideContact()">
     <div class="popup" onclick="event.stopPropagation()">
       <div class="popup-handle"></div>
@@ -397,7 +460,7 @@
         ส่งข้อความหาแอดมินเพื่อสอบถามข้อมูล<br>
         และรับลิ้งเข้าร่วมระบบ MTD
       </div>
-      <a href="https://line.me/ti/g2/vBX1RzQYdv0I72WBbutgEVCNrYWBoy1t9qS_Tg" class="popup-btn">
+      <a href="https://line.me/R/oaMessage/@mtdteam/" class="popup-btn">
         💬 &nbsp;แชทกับแอดมินเลย
       </a>
       <span class="popup-close" onclick="hideContact()">ปิด</span>
@@ -415,12 +478,20 @@
       const now = new Date();
       const end = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
       const diff = end - now;
+      if (diff <= 0) {
+        document.getElementById('countdown-top').textContent = 'หมดเวลาแล้ว';
+        document.getElementById('countdown-main').textContent = '00 : 00 : 00 : 00';
+        return;
+      }
       const d = Math.floor(diff / 86400000);
       const h = Math.floor((diff % 86400000) / 3600000);
       const m = Math.floor((diff % 3600000) / 60000);
       const s = Math.floor((diff % 60000) / 1000);
-      document.getElementById('countdown').textContent =
-        `${d} วัน ${h} ชม. ${m} นาที ${s} วิ`;
+      const pad = n => String(n).padStart(2, '0');
+      document.getElementById('countdown-top').textContent =
+        `${d} วัน ${pad(h)} ชม. ${pad(m)} นาที ${pad(s)} วิ`;
+      document.getElementById('countdown-main').textContent =
+        `${pad(d)} : ${pad(h)} : ${pad(m)} : ${pad(s)}`;
     }
     updateCountdown();
     setInterval(updateCountdown, 1000);
