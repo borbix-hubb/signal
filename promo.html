@@ -4,114 +4,117 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MTD Trader Privilege</title>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: #fff;
-      font-family: 'IBM Plex Sans Thai', 'IBM Plex Sans', sans-serif;
-      color: #1a1a1a;
+      background: #0d0d0d;
+      font-family: 'Prompt', sans-serif;
+      color: #fff;
       overflow-x: hidden;
     }
 
     /* COUNTDOWN */
     .countdown-bar {
-      background: linear-gradient(135deg, #C9973A, #E8B84B);
+      background: #E8B84B;
       padding: 10px 20px;
       text-align: center;
       font-size: 13px;
       font-weight: 600;
-      color: #2C1810;
+      color: #0d0d0d;
       letter-spacing: 1px;
     }
-    .countdown-bar span { font-weight: 700; }
 
     /* HERO */
     .hero {
-      background: linear-gradient(160deg, #1a0a04 0%, #3D1F0D 40%, #2C1810 100%);
-      padding: 48px 24px 60px;
+      background: #0d0d0d;
+      padding: 48px 24px 48px;
       text-align: center;
       position: relative;
       overflow: hidden;
+      border-bottom: 1px solid #222;
     }
-    .hero::after {
-      content: '';
+    .hero-glow {
       position: absolute;
-      bottom: -1px; left: 0; right: 0;
-      height: 40px;
-      background: #fff;
-      clip-path: ellipse(55% 100% at 50% 100%);
-    }
-    .glow {
-      position: absolute;
-      top: 20%; left: 50%;
+      top: -60px; left: 50%;
       transform: translateX(-50%);
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(232,184,75,0.2) 0%, transparent 70%);
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(232,184,75,0.18) 0%, transparent 65%);
       pointer-events: none;
     }
     .hero-badge {
       display: inline-block;
-      background: rgba(232,184,75,0.15);
-      border: 1px solid rgba(232,184,75,0.5);
+      background: rgba(232,184,75,0.12);
+      border: 1px solid rgba(232,184,75,0.4);
       color: #E8B84B;
       font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      padding: 6px 16px;
-      border-radius: 20px;
-      margin-bottom: 24px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      padding: 6px 18px;
+      border-radius: 4px;
+      margin-bottom: 28px;
     }
     .hero-logo {
-      font-size: 56px;
-      font-weight: 700;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 80px;
       color: #E8B84B;
-      letter-spacing: 10px;
-      text-shadow: 0 0 40px rgba(232,184,75,0.6);
-      margin-bottom: 8px;
+      letter-spacing: 16px;
       line-height: 1;
+      text-shadow:
+        0 0 40px rgba(232,184,75,0.5),
+        0 0 80px rgba(232,184,75,0.2);
+      margin-bottom: 4px;
     }
     .hero-title {
-      font-size: 22px;
-      font-weight: 600;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
       color: #fff;
+      letter-spacing: 6px;
+      margin-bottom: 28px;
+    }
+    .hero-price-box {
+      display: inline-block;
+      background: linear-gradient(135deg, #1a1a1a, #222);
+      border: 1px solid #333;
+      border-radius: 16px;
+      padding: 20px 36px;
       margin-bottom: 12px;
     }
-    .hero-price {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 4px;
-      background: rgba(232,184,75,0.1);
-      border: 1px solid rgba(232,184,75,0.3);
-      border-radius: 50px;
-      padding: 10px 24px;
-      margin-bottom: 16px;
-    }
-    .hero-price-label { color: #9B7340; font-size: 13px; }
-    .hero-price-amount { color: #E8B84B; font-size: 32px; font-weight: 700; }
-    .hero-sub {
-      color: #7a5a2a;
+    .hero-price-label {
       font-size: 12px;
+      color: #666;
       letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+    .hero-price-amount {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 56px;
+      color: #E8B84B;
+      letter-spacing: 4px;
+      line-height: 1;
+      text-shadow: 0 0 20px rgba(232,184,75,0.4);
+    }
+    .hero-price-sub {
+      font-size: 12px;
+      color: #555;
+      margin-top: 4px;
     }
 
     /* BENEFITS */
-    .benefits {
-      padding: 40px 20px 24px;
-    }
+    .benefits { padding: 40px 20px 24px; }
     .section-label {
-      text-align: center;
       font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      color: #C9973A;
+      font-weight: 500;
+      letter-spacing: 4px;
+      color: #E8B84B;
       margin-bottom: 20px;
+      text-align: center;
     }
     .benefit-card {
-      background: #fafafa;
-      border: 1px solid #f0f0f0;
-      border-radius: 16px;
-      padding: 20px;
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 14px;
+      padding: 18px 20px;
       margin-bottom: 12px;
       display: flex;
       align-items: center;
@@ -120,86 +123,83 @@
     }
     .benefit-card:hover {
       border-color: #E8B84B;
-      box-shadow: 0 4px 20px rgba(232,184,75,0.1);
+      background: #161616;
+      box-shadow: 0 4px 24px rgba(232,184,75,0.1);
     }
     .benefit-emoji {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, rgba(232,184,75,0.15), rgba(201,151,58,0.1));
-      border-radius: 14px;
+      width: 46px; height: 46px;
+      background: linear-gradient(135deg, #1a1a00, #2a2000);
+      border: 1px solid #333;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
+      font-size: 20px;
       flex-shrink: 0;
     }
     .benefit-content strong {
       display: block;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
-      color: #1a1a1a;
+      color: #fff;
       margin-bottom: 3px;
     }
     .benefit-content span {
       font-size: 12px;
-      color: #999;
+      color: #555;
       font-weight: 300;
-      line-height: 1.5;
     }
     .benefit-tag {
       margin-left: auto;
       background: rgba(232,184,75,0.1);
-      color: #C9973A;
+      color: #E8B84B;
       font-size: 10px;
       font-weight: 600;
-      padding: 3px 10px;
-      border-radius: 10px;
+      padding: 4px 10px;
+      border-radius: 6px;
       white-space: nowrap;
       flex-shrink: 0;
+      border: 1px solid rgba(232,184,75,0.2);
     }
 
     /* CONDITION */
     .condition {
-      margin: 0 20px 24px;
-      background: linear-gradient(135deg, #fffbf0, #fff8e6);
-      border: 1px solid #f0d070;
-      border-radius: 16px;
+      margin: 0 20px 20px;
+      background: #111;
+      border: 1px solid #2a2000;
+      border-radius: 14px;
       padding: 20px;
     }
-    .condition-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
     .condition-title {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
-      color: #C9973A;
+      color: #E8B84B;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
     }
     .condition-text {
       font-size: 13px;
-      color: #888;
+      color: #555;
       line-height: 1.8;
       font-weight: 300;
     }
-    .condition-text strong { color: #C9973A; font-weight: 600; }
+    .condition-text strong { color: #E8B84B; font-weight: 600; }
 
     /* URGENCY */
     .urgency {
       margin: 0 20px 28px;
-      background: linear-gradient(135deg, #fff5f5, #fff);
-      border: 1px solid #ffcccc;
-      border-radius: 16px;
-      padding: 18px 20px;
+      background: linear-gradient(135deg, #1a0000, #110000);
+      border: 1px solid #330000;
+      border-radius: 14px;
+      padding: 16px 20px;
       text-align: center;
     }
     .urgency-text {
       font-size: 13px;
-      color: #e05555;
+      color: #ff6b6b;
       font-weight: 500;
     }
-    .urgency-text strong { font-weight: 700; }
+    .urgency-text strong { font-weight: 700; color: #ff4444; }
 
     /* CTA */
     .cta-section { padding: 0 20px 40px; }
@@ -208,19 +208,19 @@
       width: 100%;
       padding: 18px;
       background: linear-gradient(135deg, #E8B84B, #C9973A);
-      color: #2C1810;
+      color: #0d0d0d;
       font-size: 17px;
       font-weight: 700;
       border: none;
-      border-radius: 16px;
+      border-radius: 14px;
       cursor: pointer;
-      font-family: 'IBM Plex Sans Thai', sans-serif;
-      box-shadow: 0 6px 24px rgba(232,184,75,0.45);
+      font-family: 'Prompt', sans-serif;
+      box-shadow: 0 6px 30px rgba(232,184,75,0.35);
       transition: all 0.3s;
       text-decoration: none;
       text-align: center;
       margin-bottom: 12px;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
     }
     .btn-primary:active { transform: scale(0.98); }
     .btn-secondary {
@@ -228,95 +228,110 @@
       width: 100%;
       padding: 15px;
       background: transparent;
-      color: #C9973A;
+      color: #E8B84B;
       font-size: 14px;
-      font-weight: 600;
-      border: 1.5px solid #E8B84B;
-      border-radius: 16px;
+      font-weight: 500;
+      border: 1px solid #333;
+      border-radius: 14px;
       cursor: pointer;
-      font-family: 'IBM Plex Sans Thai', sans-serif;
-      transition: all 0.3s;
+      font-family: 'Prompt', sans-serif;
       text-align: center;
+      transition: all 0.3s;
     }
+    .btn-secondary:hover { border-color: #E8B84B; }
 
     /* POPUP */
     .overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.8);
       z-index: 100;
       justify-content: center;
       align-items: flex-end;
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(6px);
     }
     .overlay.show { display: flex; }
     .popup {
-      background: #fff;
+      background: #111;
+      border: 1px solid #222;
       border-radius: 24px 24px 0 0;
-      padding: 32px 24px 48px;
+      padding: 28px 24px 48px;
       width: 100%;
       max-width: 480px;
       text-align: center;
     }
     .popup-handle {
       width: 40px; height: 4px;
-      background: #e0e0e0;
+      background: #333;
       border-radius: 2px;
-      margin: 0 auto 28px;
+      margin: 0 auto 24px;
     }
-    .popup-icon { font-size: 44px; margin-bottom: 14px; }
-    .popup-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
-    .popup-desc { font-size: 14px; color: #999; line-height: 1.7; margin-bottom: 28px; font-weight: 300; }
+    .popup-icon { font-size: 44px; margin-bottom: 12px; }
+    .popup-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .popup-desc {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
     .popup-btn {
       display: block;
       width: 100%;
       padding: 15px;
       background: linear-gradient(135deg, #E8B84B, #C9973A);
-      color: #2C1810;
+      color: #0d0d0d;
       font-size: 15px;
       font-weight: 700;
       border: none;
-      border-radius: 14px;
+      border-radius: 12px;
       cursor: pointer;
-      font-family: 'IBM Plex Sans Thai', sans-serif;
+      font-family: 'Prompt', sans-serif;
       margin-bottom: 12px;
       text-decoration: none;
       text-align: center;
     }
-    .popup-close { font-size: 13px; color: #bbb; cursor: pointer; padding: 8px; display: block; }
+    .popup-close {
+      font-size: 13px;
+      color: #444;
+      cursor: pointer;
+      padding: 8px;
+      display: block;
+    }
 
     .footer {
       text-align: center;
       padding: 0 20px 32px;
       font-size: 10px;
-      color: #ccc;
-      letter-spacing: 2px;
+      color: #333;
+      letter-spacing: 3px;
     }
   </style>
 </head>
 <body>
 
-  <!-- COUNTDOWN BAR -->
   <div class="countdown-bar">
-    ⏰ โปรนี้มีถึงสิ้นเดือนนี้เท่านั้น — <span id="countdown">กำลังนับ...</span>
+    ⏰ &nbsp;โปรนี้มีถึงสิ้นเดือนนี้ — <strong id="countdown">กำลังนับ...</strong>
   </div>
 
-  <!-- HERO -->
   <div class="hero">
-    <div class="glow"></div>
-    <div class="hero-badge">✦ LIMITED OFFER ✦</div>
+    <div class="hero-glow"></div>
+    <div class="hero-badge">✦ &nbsp;LIMITED OFFER&nbsp; ✦</div>
     <div class="hero-logo">MTD</div>
-    <div class="hero-title">Trader Privilege</div>
-    <div class="hero-price">
-      <span class="hero-price-label">เติมเงินเพียง</span>
-      <span class="hero-price-amount">$100</span>
-      <span class="hero-price-label">รับสิทธิ์ทันที</span>
+    <div class="hero-title">TRADER PRIVILEGE</div>
+    <div class="hero-price-box">
+      <div class="hero-price-label">เติมเงินเพียง</div>
+      <div class="hero-price-amount">$100</div>
+      <div class="hero-price-sub">รับสิทธิ์เข้าร่วมระบบ MTD ทันที</div>
     </div>
-    <div class="hero-sub">MONEY TALK TRADER</div>
   </div>
 
-  <!-- BENEFITS -->
   <div class="benefits">
     <div class="section-label">สิทธิ์ที่คุณจะได้รับ</div>
 
@@ -342,44 +357,37 @@
       <div class="benefit-emoji">👥</div>
       <div class="benefit-content">
         <strong>MTD Community</strong>
-        <span>อัปเดตมุมมองตลาด แลกเปลี่ยนความรู้<br>คอนเทนต์พิเศษจากทีม</span>
+        <span>มุมมองตลาด แลกเปลี่ยนความรู้ คอนเทนต์พิเศษ</span>
       </div>
       <div class="benefit-tag">Exclusive</div>
     </div>
   </div>
 
-  <!-- CONDITION -->
   <div class="condition">
-    <div class="condition-header">
-      <span>⚡</span>
-      <span class="condition-title">เงื่อนไขการรักษาสิทธิ์</span>
-    </div>
+    <div class="condition-title">⚡ เงื่อนไขการรักษาสิทธิ์</div>
     <div class="condition-text">
-      มียอดเทรดสะสมครบ <strong>1 Lot/เดือน</strong><br>
+      มียอดเทรดสะสมครบ <strong>1 Lot / เดือน</strong><br>
       รับสิทธิ์ทั้งหมดต่อเนื่องฟรีในเดือนถัดไป
     </div>
   </div>
 
-  <!-- URGENCY -->
   <div class="urgency">
     <div class="urgency-text">
-      🔥 โปรนี้ปิดรับ <strong>สิ้นเดือนนี้เท่านั้น</strong> อย่าพลาดโอกาสนี้
+      🔥 โปรนี้ปิดรับ <strong>สิ้นเดือนนี้เท่านั้น</strong> — อย่าพลาด
     </div>
   </div>
 
-  <!-- CTA -->
   <div class="cta-section">
     <a href="https://borbix-hubb.github.io/mtd-indicator/landing-page.html" class="btn-primary">
-      🚀 รับสิทธิ์เลยตอนนี้
+      🚀 &nbsp;รับสิทธิ์เลยตอนนี้
     </a>
     <button class="btn-secondary" onclick="showContact()">
-      💬 สอบถามแอดมิน
+      💬 &nbsp;สอบถามแอดมิน
     </button>
   </div>
 
   <div class="footer">© MTD SIGNAL · MONEY TALK TRADER</div>
 
-  <!-- POPUP -->
   <div class="overlay" id="overlay" onclick="hideContact()">
     <div class="popup" onclick="event.stopPropagation()">
       <div class="popup-handle"></div>
@@ -390,7 +398,7 @@
         และรับลิ้งเข้าร่วมระบบ MTD
       </div>
       <a href="https://line.me/ti/g2/vBX1RzQYdv0I72WBbutgEVCNrYWBoy1t9qS_Tg" class="popup-btn">
-        💬 แชทกับแอดมินเลย
+        💬 &nbsp;แชทกับแอดมินเลย
       </a>
       <span class="popup-close" onclick="hideContact()">ปิด</span>
     </div>
@@ -403,8 +411,6 @@
     function hideContact() {
       document.getElementById('overlay').classList.remove('show');
     }
-
-    // Countdown ถึงสิ้นเดือน
     function updateCountdown() {
       const now = new Date();
       const end = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
@@ -414,7 +420,7 @@
       const m = Math.floor((diff % 3600000) / 60000);
       const s = Math.floor((diff % 60000) / 1000);
       document.getElementById('countdown').textContent =
-        `เหลือ ${d} วัน ${h} ชั่วโมง ${m} นาที ${s} วินาที`;
+        `${d} วัน ${h} ชม. ${m} นาที ${s} วิ`;
     }
     updateCountdown();
     setInterval(updateCountdown, 1000);
