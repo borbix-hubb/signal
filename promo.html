@@ -53,12 +53,30 @@
     pointer-events: none; z-index: 0;
   }
 
+  .countdown-bar {
+    background: linear-gradient(90deg, #ff4444, #ff6035, #ff4444);
+    background-size: 200% 100%;
+    animation: slideGrad 2s linear infinite;
+    padding: 11px 20px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 0.5px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  @keyframes slideGrad {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+  }
+
   .page { position: relative; z-index: 1; }
   .container { max-width: 680px; margin: 0 auto; padding: 0 24px; }
   section { padding: 64px 0; }
   section + section { padding-top: 0; }
 
-  /* HERO */
   .hero { padding: 72px 0 48px; text-align: center; }
 
   .hero-eyebrow {
@@ -91,10 +109,7 @@
     margin-bottom: 16px;
   }
 
-  .hero h1 em {
-    font-style: normal;
-    color: var(--gold-light);
-  }
+  .hero h1 em { font-style: normal; color: var(--gold-light); }
 
   .hero-sub {
     font-size: 17px;
@@ -137,12 +152,10 @@
   .cta-primary:active { transform: translateY(0); }
   .cta-arrow { font-size: 20px; transition: transform 0.15s; }
   .cta-primary:hover .cta-arrow { transform: translateX(4px); }
-
   .cta-note { margin-top: 14px; font-size: 12px; color: var(--white-50); }
 
   .divider { border: none; border-top: 1px solid var(--white-20); margin: 0; }
 
-  /* BENEFITS */
   .benefits { padding: 56px 0; }
 
   .section-label {
@@ -209,7 +222,6 @@
   .vip-text h3 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
   .vip-text p { font-size: 13px; color: var(--white-50); line-height: 1.6; }
 
-  /* CONDITION */
   .condition-section { padding: 48px 0 64px; }
 
   .condition-card {
@@ -243,7 +255,6 @@
   .trust-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--white-50); }
   .trust-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
 
-  /* BOTTOM CTA */
   .bottom-cta {
     text-align: center;
     padding: 56px 0 80px;
@@ -260,7 +271,6 @@
     line-height: 1.7;
   }
 
-  /* POPUP OVERLAY */
   .overlay {
     display: none;
     position: fixed; inset: 0;
@@ -289,21 +299,13 @@
     margin: 0 auto 24px;
   }
 
-  .popup-title {
-    font-size: 20px; font-weight: 600;
-    text-align: center;
-    margin-bottom: 6px;
-  }
-
-  .popup-sub {
-    font-size: 13px;
-    color: var(--white-50);
-    text-align: center;
-    margin-bottom: 24px;
-  }
+  .popup-title { font-size: 20px; font-weight: 600; text-align: center; margin-bottom: 6px; }
+  .popup-sub { font-size: 13px; color: var(--white-50); text-align: center; margin-bottom: 24px; }
 
   .coach-btn {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 14px;
     width: 100%;
     padding: 16px 20px;
     background: var(--navy-card);
@@ -314,9 +316,6 @@
     text-decoration: none;
     margin-bottom: 10px;
     transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 14px;
   }
 
   .coach-btn:hover {
@@ -325,26 +324,10 @@
     transform: translateY(-1px);
   }
 
-  .coach-avatar {
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    background: var(--gold-dim);
-    border: 1px solid rgba(200,168,75,0.3);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-
   .coach-info { text-align: left; }
   .coach-name { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
   .coach-code { font-size: 12px; color: var(--white-50); }
-
-  .coach-arrow {
-    margin-left: auto;
-    color: var(--gold);
-    font-size: 18px;
-    flex-shrink: 0;
-  }
+  .coach-arrow { margin-left: auto; color: var(--gold); font-size: 18px; flex-shrink: 0; }
 
   .popup-notice {
     margin-top: 16px;
@@ -359,16 +342,7 @@
   }
 
   .popup-notice strong { color: var(--gold-light); }
-
-  .popup-close {
-    display: block;
-    text-align: center;
-    margin-top: 16px;
-    font-size: 13px;
-    color: var(--white-50);
-    cursor: pointer;
-    padding: 8px;
-  }
+  .popup-close { display: block; text-align: center; margin-top: 16px; font-size: 13px; color: var(--white-50); cursor: pointer; padding: 8px; }
 
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--navy); }
@@ -386,10 +360,14 @@
 </style>
 </head>
 <body>
+
+<div class="countdown-bar">
+  🔥 โปรนี้ปิดรับสิ้นเดือนมิถุนายน 2026 — เหลืออีก <strong id="cd">กำลังนับ...</strong>
+</div>
+
 <div class="bg-glow"></div>
 <div class="page">
 
-  <!-- HERO -->
   <section class="hero">
     <div class="container">
       <div class="hero-eyebrow">MTD Trader Privilege</div>
@@ -415,7 +393,6 @@
 
   <hr class="divider">
 
-  <!-- BENEFITS -->
   <section class="benefits" id="benefits">
     <div class="container">
       <p class="section-label">สิทธิ์ที่คุณได้ทันที</p>
@@ -454,7 +431,6 @@
 
   <hr class="divider">
 
-  <!-- CONDITION -->
   <section class="condition-section">
     <div class="container">
       <p class="section-label">เงื่อนไขรักษาสิทธิ์</p>
@@ -475,7 +451,6 @@
     </div>
   </section>
 
-  <!-- BOTTOM CTA -->
   <section class="bottom-cta">
     <div class="container">
       <h2>พร้อมเริ่มแล้วใช่ไหม?</h2>
@@ -490,7 +465,6 @@
 
 </div>
 
-<!-- POPUP เลือกโค้ช -->
 <div class="overlay" id="overlay" onclick="hideCoachPopup()">
   <div class="popup" onclick="event.stopPropagation()">
     <div class="popup-handle"></div>
@@ -498,7 +472,6 @@
     <div class="popup-sub">สมัครผ่านโค้ชที่คุณต้องการได้เลย</div>
 
     <a href="https://portal.qrsfx.com/register/026692" class="coach-btn">
-      <div class="coach-avatar">👩‍💼</div>
       <div class="coach-info">
         <div class="coach-name">โค้ชหลิง</div>
         <div class="coach-code">รหัส 026692 · portal.qrsfx.com</div>
@@ -507,7 +480,6 @@
     </a>
 
     <a href="https://portal.qrsfx.com/register/078291" class="coach-btn">
-      <div class="coach-avatar">👨‍💼</div>
       <div class="coach-info">
         <div class="coach-name">โค้ชบิ้ว</div>
         <div class="coach-code">รหัส 078291 · portal.qrsfx.com</div>
@@ -516,7 +488,6 @@
     </a>
 
     <a href="https://portal.qrsfx.com/register/078289" class="coach-btn">
-      <div class="coach-avatar">👨‍💼</div>
       <div class="coach-info">
         <div class="coach-name">โค้ชบิ๊ก</div>
         <div class="coach-code">รหัส 078289 · portal.qrsfx.com</div>
@@ -540,6 +511,20 @@
   function hideCoachPopup() {
     document.getElementById('overlay').classList.remove('show');
   }
+  function updateCd() {
+    const end = new Date('2026-06-30T23:59:59+07:00');
+    const diff = end - new Date();
+    if (diff <= 0) { document.getElementById('cd').textContent = 'หมดเวลาแล้ว'; return; }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    const p = n => String(n).padStart(2, '0');
+    document.getElementById('cd').textContent =
+      `${d} วัน ${p(h)} ชม. ${p(m)} นาที ${p(s)} วิ`;
+  }
+  updateCd();
+  setInterval(updateCd, 1000);
 </script>
 </body>
 </html>
