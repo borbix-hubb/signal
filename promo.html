@@ -1,412 +1,545 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MTD Trader Privilege</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #0a0a0a;
-      font-family: 'Prompt', sans-serif;
-      color: #fff;
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MTD Trader Privilege</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .countdown-bar {
-      background: linear-gradient(90deg, #ff4444, #ff6b35, #ff4444);
-      background-size: 200% 100%;
-      animation: slideGrad 2s linear infinite;
-      padding: 12px 20px;
-      text-align: center;
-      font-size: 13px;
-      font-weight: 600;
-      color: #fff;
-      letter-spacing: 1px;
-    }
-    @keyframes slideGrad {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 200% 0%; }
-    }
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #162336;
+    --navy-card: #1A2D44;
+    --navy-border: #1E3550;
+    --gold: #C8A84B;
+    --gold-light: #E8C96A;
+    --gold-dim: rgba(200,168,75,0.15);
+    --teal: #3ECFB2;
+    --teal-dim: rgba(62,207,178,0.12);
+    --white: #FFFFFF;
+    --white-80: rgba(255,255,255,0.8);
+    --white-50: rgba(255,255,255,0.5);
+    --white-20: rgba(255,255,255,0.12);
+    --white-10: rgba(255,255,255,0.07);
+  }
 
-    .hero {
-      background: #0a0a0a;
-      padding: 52px 24px 52px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-glow {
-      position: absolute;
-      top: -80px; left: 50%;
-      transform: translateX(-50%);
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(232,184,75,0.15) 0%, transparent 65%);
-      pointer-events: none;
-      animation: pulse 3s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
-      50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
-    }
-    .hero-badge {
-      display: inline-block;
-      background: rgba(255,68,68,0.15);
-      border: 1px solid rgba(255,68,68,0.5);
-      color: #ff6b6b;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 4px;
-      padding: 6px 18px;
-      border-radius: 4px;
-      margin-bottom: 24px;
-      animation: blink 1.5s ease-in-out infinite;
-    }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; }
-    }
-    .hero-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 88px;
-      color: #E8B84B;
-      letter-spacing: 16px;
-      line-height: 1;
-      text-shadow: 0 0 40px rgba(232,184,75,0.6), 0 0 80px rgba(232,184,75,0.3);
-      margin-bottom: 4px;
-    }
-    .hero-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 26px;
-      color: #aaa;
-      letter-spacing: 8px;
-      margin-bottom: 32px;
-    }
-    .hero-price-box {
-      display: inline-block;
-      background: linear-gradient(135deg, #151500, #1f1a00);
-      border: 1px solid #E8B84B;
-      border-radius: 16px;
-      padding: 20px 40px;
-      box-shadow: 0 0 30px rgba(232,184,75,0.15), inset 0 0 30px rgba(232,184,75,0.05);
-    }
-    .hero-price-label { font-size: 12px; color: #aaa; letter-spacing: 2px; margin-bottom: 6px; }
-    .hero-price-amount {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 64px;
-      color: #E8B84B;
-      letter-spacing: 4px;
-      line-height: 1;
-      text-shadow: 0 0 30px rgba(232,184,75,0.5);
-    }
-    .hero-price-sub { font-size: 13px; color: #bbb; margin-top: 6px; }
+  html { scroll-behavior: smooth; }
 
-    .deadline-box {
-      margin: 32px 20px 0;
-      background: linear-gradient(135deg, #1a0000, #200000);
-      border: 2px solid #ff4444;
-      border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 0 30px rgba(255,68,68,0.2);
-      position: relative;
-      overflow: hidden;
-    }
-    .deadline-box::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,68,68,0.05), transparent);
-      animation: shimmer 2s linear infinite;
-    }
-    @keyframes shimmer {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-    .deadline-title { font-size: 11px; font-weight: 600; letter-spacing: 4px; color: #ff6b6b; margin-bottom: 8px; }
-    .deadline-text { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 8px; }
-    .deadline-text span { color: #ff4444; }
-    .deadline-countdown {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 32px;
-      color: #ff6b6b;
-      letter-spacing: 4px;
-    }
+  body {
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
 
-    .benefits { padding: 36px 20px 24px; }
-    .section-label {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 4px;
-      color: #E8B84B;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-    .benefit-card {
-      background: #111;
-      border: 1px solid #1e1e1e;
-      border-radius: 14px;
-      padding: 18px 20px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      transition: all 0.3s;
-    }
-    .benefit-card:hover {
-      border-color: #E8B84B;
-      background: #151500;
-      box-shadow: 0 4px 24px rgba(232,184,75,0.1);
-      transform: translateX(4px);
-    }
-    .benefit-emoji {
-      width: 44px; height: 44px;
-      background: #1a1a00;
-      border: 1px solid #2a2a00;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-    .benefit-content strong {
-      display: block;
-      font-size: 14px;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 2px;
-    }
-    .benefit-content span { font-size: 12px; color: #999; font-weight: 300; }
-    .benefit-tag {
-      margin-left: auto;
-      background: rgba(232,184,75,0.1);
-      color: #E8B84B;
-      font-size: 10px;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 6px;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0;
+  }
 
-    .condition {
-      margin: 0 20px 20px;
-      background: #111;
-      border: 1px solid #222;
-      border-radius: 14px;
-      padding: 18px 20px;
-    }
-    .condition-title { font-size: 12px; font-weight: 600; color: #E8B84B; margin-bottom: 8px; letter-spacing: 2px; }
-    .condition-text { font-size: 13px; color: #999; line-height: 1.8; font-weight: 300; }
-    .condition-text strong { color: #E8B84B; font-weight: 600; }
+  .bg-glow {
+    position: fixed; top: -20%; left: 50%;
+    transform: translateX(-50%);
+    width: 700px; height: 500px;
+    background: radial-gradient(ellipse at 50% 40%, rgba(200,168,75,0.18) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
 
-    /* CTA */
-    .cta-section { padding: 8px 20px 16px; }
-    .cta-label {
-      text-align: center;
-      font-size: 13px;
-      color: #888;
-      margin-bottom: 16px;
-      letter-spacing: 1px;
-    }
-    .coach-btn {
-      display: block;
-      width: 100%;
-      padding: 16px 20px;
-      background: linear-gradient(135deg, #E8B84B, #C9973A);
-      color: #0a0a0a;
-      font-size: 16px;
-      font-weight: 700;
-      border: none;
-      border-radius: 14px;
-      cursor: pointer;
-      font-family: 'Prompt', sans-serif;
-      box-shadow: 0 6px 24px rgba(232,184,75,0.35);
-      transition: all 0.3s;
-      text-decoration: none;
-      text-align: center;
-      margin-bottom: 10px;
-      position: relative;
-      overflow: hidden;
-    }
-    .coach-btn::after {
-      content: '';
-      position: absolute;
-      top: -50%; left: -60%;
-      width: 40%; height: 200%;
-      background: rgba(255,255,255,0.2);
-      transform: skewX(-20deg);
-      animation: shine 3s ease-in-out infinite;
-    }
-    @keyframes shine {
-      0% { left: -60%; }
-      100% { left: 120%; }
-    }
-    .coach-btn:active { transform: scale(0.98); }
-    .coach-btn small {
-      display: block;
-      font-size: 11px;
-      font-weight: 400;
-      opacity: 0.7;
-      margin-top: 2px;
-    }
+  .page { position: relative; z-index: 1; }
+  .container { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 64px 0; }
+  section + section { padding-top: 0; }
 
-    .notice-box {
-      margin: 8px 20px 20px;
-      background: #111;
-      border: 1px solid #2a2a00;
-      border-radius: 12px;
-      padding: 14px 18px;
-      text-align: center;
-    }
-    .notice-text {
-      font-size: 13px;
-      color: #bbb;
-      line-height: 1.7;
-      font-weight: 300;
-    }
-    .notice-text strong { color: #E8B84B; font-weight: 600; }
+  /* HERO */
+  .hero { padding: 72px 0 48px; text-align: center; }
 
-    .admin-text {
-      text-align: center;
-      padding: 0 20px 40px;
-      font-size: 12px;
-      color: #666;
-      font-weight: 300;
-      line-height: 1.7;
-    }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--gold-dim);
+    border: 1px solid rgba(200,168,75,0.35);
+    border-radius: 99px;
+    padding: 6px 18px;
+    font-size: 12px; font-weight: 500;
+    color: var(--gold-light);
+    letter-spacing: 0.06em;
+    margin-bottom: 28px;
+  }
 
-    .footer {
-      text-align: center;
-      padding: 0 20px 32px;
-      font-size: 10px;
-      color: #2a2a2a;
-      letter-spacing: 3px;
-    }
-  </style>
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(1.3)} }
+
+  .hero h1 {
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--white-50);
+    max-width: 460px;
+    margin: 0 auto 40px;
+  }
+
+  .price-block {
+    display: inline-flex; align-items: baseline; gap: 10px;
+    background: var(--white-10);
+    border: 1px solid var(--gold-dim);
+    border-radius: 16px;
+    padding: 20px 32px;
+    margin-bottom: 40px;
+  }
+
+  .price-amount { font-size: 58px; font-weight: 600; color: var(--gold-light); letter-spacing: -0.03em; line-height: 1; }
+  .price-currency { font-size: 22px; font-weight: 400; color: var(--gold); align-self: flex-start; margin-top: 12px; }
+  .price-label { font-size: 14px; color: var(--white-50); text-align: left; line-height: 1.4; }
+  .price-label strong { display: block; color: var(--white-80); font-size: 13px; }
+
+  .cta-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    color: var(--navy);
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 14px;
+    padding: 18px 40px;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: transform 0.15s, box-shadow 0.15s;
+    text-decoration: none;
+  }
+
+  .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200,168,75,0.35); }
+  .cta-primary:active { transform: translateY(0); }
+  .cta-arrow { font-size: 20px; transition: transform 0.15s; }
+  .cta-primary:hover .cta-arrow { transform: translateX(4px); }
+
+  .cta-note { margin-top: 14px; font-size: 12px; color: var(--white-50); }
+
+  .divider { border: none; border-top: 1px solid var(--white-20); margin: 0; }
+
+  /* BENEFITS */
+  .benefits { padding: 56px 0; }
+
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .section-heading { font-size: 26px; font-weight: 600; margin-bottom: 36px; line-height: 1.3; }
+
+  .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 520px) { .benefits-grid { grid-template-columns: 1fr; } }
+
+  .benefit-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 16px;
+    padding: 22px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .benefit-card:hover { border-color: rgba(200,168,75,0.4); transform: translateY(-2px); }
+
+  .benefit-icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    background: var(--teal-dim);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+
+  .benefit-card:nth-child(1) .benefit-icon { background: var(--gold-dim); }
+  .benefit-card:nth-child(3) .benefit-icon { background: rgba(62,207,178,0.12); }
+  .benefit-card:nth-child(4) .benefit-icon { background: rgba(130,100,255,0.12); }
+
+  .benefit-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--white); }
+  .benefit-desc { font-size: 13px; color: var(--white-50); line-height: 1.6; }
+
+  .vip-card {
+    background: linear-gradient(135deg, var(--gold-dim) 0%, rgba(62,207,178,0.08) 100%);
+    border: 1px solid rgba(200,168,75,0.3);
+    border-radius: 18px;
+    padding: 28px;
+    margin-top: 14px;
+    display: flex; align-items: flex-start; gap: 18px;
+  }
+
+  .vip-badge {
+    flex-shrink: 0;
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+  }
+
+  .vip-badge small { display: block; font-size: 10px; font-weight: 600; letter-spacing: 0.05em; margin-top: 2px; }
+  .vip-text h3 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+  .vip-text p { font-size: 13px; color: var(--white-50); line-height: 1.6; }
+
+  /* CONDITION */
+  .condition-section { padding: 48px 0 64px; }
+
+  .condition-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 20px;
+    padding: 32px;
+    display: flex; align-items: flex-start; gap: 20px;
+  }
+
+  .cond-icon-wrap {
+    flex-shrink: 0;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--teal-dim);
+    border: 1px solid rgba(62,207,178,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+
+  .condition-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .condition-card p { font-size: 14px; color: var(--white-50); line-height: 1.7; }
+  .condition-card p strong { color: var(--teal); font-weight: 600; }
+
+  .trust-row {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 10px 24px;
+    padding: 32px 0;
+  }
+
+  .trust-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--white-50); }
+  .trust-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+
+  /* BOTTOM CTA */
+  .bottom-cta {
+    text-align: center;
+    padding: 56px 0 80px;
+    border-top: 1px solid var(--white-20);
+  }
+
+  .bottom-cta h2 { font-size: 28px; font-weight: 600; margin-bottom: 12px; }
+  .bottom-cta p { font-size: 15px; color: var(--white-50); margin-bottom: 32px; }
+
+  .admin-note {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--white-50);
+    line-height: 1.7;
+  }
+
+  /* POPUP OVERLAY */
+  .overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 100;
+    justify-content: center;
+    align-items: flex-end;
+    backdrop-filter: blur(8px);
+  }
+  .overlay.show { display: flex; }
+
+  .popup {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    border-top: 2px solid var(--gold);
+    border-radius: 24px 24px 0 0;
+    padding: 28px 24px 48px;
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .popup-handle {
+    width: 40px; height: 4px;
+    background: var(--navy-border);
+    border-radius: 2px;
+    margin: 0 auto 24px;
+  }
+
+  .popup-title {
+    font-size: 20px; font-weight: 600;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  .popup-sub {
+    font-size: 13px;
+    color: var(--white-50);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .coach-btn {
+    display: block;
+    width: 100%;
+    padding: 16px 20px;
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: 14px;
+    cursor: pointer;
+    font-family: inherit;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .coach-btn:hover {
+    border-color: var(--gold);
+    background: rgba(200,168,75,0.08);
+    transform: translateY(-1px);
+  }
+
+  .coach-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    border: 1px solid rgba(200,168,75,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .coach-info { text-align: left; }
+  .coach-name { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
+  .coach-code { font-size: 12px; color: var(--white-50); }
+
+  .coach-arrow {
+    margin-left: auto;
+    color: var(--gold);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .popup-notice {
+    margin-top: 16px;
+    background: rgba(200,168,75,0.08);
+    border: 1px solid rgba(200,168,75,0.2);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--white-50);
+    text-align: center;
+    line-height: 1.7;
+  }
+
+  .popup-notice strong { color: var(--gold-light); }
+
+  .popup-close {
+    display: block;
+    text-align: center;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--white-50);
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--navy-border); border-radius: 3px; }
+
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  @media (max-width: 600px) {
+    .hero { padding: 48px 0 32px; }
+    .price-block { flex-direction: column; align-items: center; gap: 6px; padding: 18px 24px; }
+    .price-label { text-align: center; }
+    .vip-card { flex-direction: column; align-items: center; text-align: center; }
+    .condition-card { flex-direction: column; align-items: center; text-align: center; }
+  }
+</style>
 </head>
 <body>
+<div class="bg-glow"></div>
+<div class="page">
 
-  <div class="countdown-bar">
-    🔥 &nbsp;ปิดรับสมัคร — <strong id="countdown-top">กำลังนับ...</strong>
-  </div>
-
-  <div class="hero">
-    <div class="hero-glow"></div>
-    <div class="hero-badge">🚨 &nbsp;LIMITED TIME OFFER</div>
-    <div class="hero-logo">MTD</div>
-    <div class="hero-title">TRADER PRIVILEGE</div>
-    <div class="hero-price-box">
-      <div class="hero-price-label">เติมเงินเพียง</div>
-      <div class="hero-price-amount">$100</div>
-      <div class="hero-price-sub">รับสิทธิ์เข้าร่วมระบบ MTD ทันที</div>
-    </div>
-  </div>
-
-  <div class="deadline-box">
-    <div class="deadline-title">⚠️ &nbsp;ปิดรับสมัคร</div>
-    <div class="deadline-text">สิ้นเดือน<span>มิถุนายน 2569</span>นี้เท่านั้น</div>
-    <div class="deadline-countdown" id="countdown-main">00 : 00 : 00 : 00</div>
-  </div>
-
-  <div class="benefits">
-    <div class="section-label">สิทธิ์ที่คุณจะได้รับ</div>
-    <div class="benefit-card">
-      <div class="benefit-emoji">📊</div>
-      <div class="benefit-content">
-        <strong>MTD Indicator</strong>
-        <span>เครื่องมือวิเคราะห์ตลาดจากทีม MTD</span>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">MTD Trader Privilege</div>
+      <h1>เทรดได้เลย พร้อมระบบครบ<br>ด้วย <em>$100</em> เดียว</h1>
+      <p class="hero-sub">เงินทุกดอลลาร์คือเงินเทรดของคุณ — ไม่ใช่ค่าสมัคร<br>รับสิทธิ์ทุกอย่างทันทีที่เติมเงิน</p>
+      <div class="price-block">
+        <span class="price-currency">$</span>
+        <span class="price-amount">100</span>
+        <div class="price-label">
+          <strong>เติมเงินเข้าพอร์ต</strong>
+          ไม่มีค่าสมัครเพิ่มเติม
+        </div>
       </div>
-      <div class="benefit-tag">ฟรี 1 เดือน</div>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-emoji">📡</div>
-      <div class="benefit-content">
-        <strong>MTD Signal + ข่าวสาร</strong>
-        <span>รับสัญญาณเทรดและข่าวสารตลาด</span>
+      <div>
+        <button class="cta-primary" onclick="showCoachPopup()">
+          สนใจเปิดพอร์ต
+          <span class="cta-arrow">→</span>
+        </button>
+        <p class="cta-note">🔒 เงินของคุณอยู่ในพอร์ต พร้อมเทรดได้เลย</p>
       </div>
-      <div class="benefit-tag">ฟรีทันที</div>
     </div>
-    <div class="benefit-card">
-      <div class="benefit-emoji">💎</div>
-      <div class="benefit-content">
-        <strong>VIP Signal</strong>
-        <span>รับซิกพรีเมียม 10 ซิกขึ้นไป/เดือน</span>
-      </div>
-      <div class="benefit-tag">VIP Only</div>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-emoji">👥</div>
-      <div class="benefit-content">
-        <strong>MTD Community</strong>
-        <span>มุมมองตลาด แลกเปลี่ยนความรู้ คอนเทนต์พิเศษ</span>
-      </div>
-      <div class="benefit-tag">Exclusive</div>
-    </div>
-  </div>
+  </section>
 
-  <div class="condition">
-    <div class="condition-title">⚡ เงื่อนไขการรักษาสิทธิ์</div>
-    <div class="condition-text">
-      มียอดเทรดสะสมครบ <strong>1 Lot / เดือน</strong><br>
-      รับสิทธิ์ทั้งหมดต่อเนื่องฟรีในเดือนถัดไป
-    </div>
-  </div>
+  <hr class="divider">
 
-  <div class="cta-section">
-    <div class="cta-label">เลือกสมัครผ่านโค้ชของคุณ</div>
+  <!-- BENEFITS -->
+  <section class="benefits" id="benefits">
+    <div class="container">
+      <p class="section-label">สิทธิ์ที่คุณได้ทันที</p>
+      <h2 class="section-heading">ครบ ตั้งแต่วันแรก</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">📊</div>
+          <p class="benefit-title">MTD Indicator ฟรี 1 เดือน</p>
+          <p class="benefit-desc">เครื่องมือวิเคราะห์ตลาดของทีม MTD ใช้งานได้ทันทีที่เติมเงินครบ</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🔔</div>
+          <p class="benefit-title">ห้อง Signal + ข่าวสาร</p>
+          <p class="benefit-desc">รับข้อมูลตลาดและสัญญาณเทรดจากทีม MTD โดยตรง ตลอดเวลา</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🌐</div>
+          <p class="benefit-title">MTD Community</p>
+          <p class="benefit-desc">อัปเดตมุมมองตลาด แลกเปลี่ยนความรู้ และคอนเทนต์พิเศษจากทีม</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">⚡</div>
+          <p class="benefit-title">เข้าถึงทุกสิทธิ์พร้อมกัน</p>
+          <p class="benefit-desc">ไม่ต้องรอ ไม่ต้องสมัครแยก เติมเงินปุ๊บ เปิดใช้งานได้เลยทันที</p>
+        </div>
+      </div>
+      <div class="vip-card">
+        <div class="vip-badge">10+<small>ซิก/วัน</small></div>
+        <div class="vip-text">
+          <h3>ห้องซิก VIP — ส่งตลอดวัน</h3>
+          <p>สัญญาณ 10 ซิกขึ้นไปต่อวัน ส่งทันทีเมื่อมีจุดเข้าที่ดี ไม่พลาดทุกโอกาสในตลาด</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CONDITION -->
+  <section class="condition-section">
+    <div class="container">
+      <p class="section-label">เงื่อนไขรักษาสิทธิ์</p>
+      <h2 class="section-heading">ง่ายมาก — แค่เทรด</h2>
+      <div class="condition-card">
+        <div class="cond-icon-wrap">✅</div>
+        <div>
+          <h3>เทรดครบ 1 Lot/เดือน</h3>
+          <p>เพียงมียอดเทรดสะสมครบ <strong>1 Lot ต่อเดือน</strong> ก็รักษาสิทธิ์ทั้งหมดไว้ได้ฟรีในเดือนถัดไป — ไม่มีค่าใช้จ่ายเพิ่ม ไม่ต้องสมัครใหม่ แค่เทรดตามปกติก็พอ</p>
+        </div>
+      </div>
+      <div class="trust-row">
+        <span class="trust-item"><span class="trust-dot"></span>ไม่มีค่าสมัคร</span>
+        <span class="trust-item"><span class="trust-dot"></span>เริ่มใช้งานทันที</span>
+        <span class="trust-item"><span class="trust-dot"></span>ต่ออายุด้วยยอดเทรด</span>
+        <span class="trust-item"><span class="trust-dot"></span>ทีมซัพพอร์ตพร้อมช่วย</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="bottom-cta">
+    <div class="container">
+      <h2>พร้อมเริ่มแล้วใช่ไหม?</h2>
+      <p>เติม $100 วันนี้ — รับสิทธิ์ทุกอย่างพร้อมกันเลย</p>
+      <button class="cta-primary" onclick="showCoachPopup()">
+        สนใจเปิดพอร์ต
+        <span class="cta-arrow">→</span>
+      </button>
+      <p class="admin-note">หากมีข้อสงสัยสอบถามแอดมินได้ตลอด<br>LINE OA : <span style="color:var(--gold-light)">@mtdteam</span></p>
+    </div>
+  </section>
+
+</div>
+
+<!-- POPUP เลือกโค้ช -->
+<div class="overlay" id="overlay" onclick="hideCoachPopup()">
+  <div class="popup" onclick="event.stopPropagation()">
+    <div class="popup-handle"></div>
+    <div class="popup-title">เลือกโค้ชของคุณ</div>
+    <div class="popup-sub">สมัครผ่านโค้ชที่คุณต้องการได้เลย</div>
+
     <a href="https://portal.qrsfx.com/register/026692" class="coach-btn">
-      🚀 สมัครกับโค้ชหลิง
-      <small>portal.qrsfx.com · รหัส 026692</small>
+      <div class="coach-avatar">👩‍💼</div>
+      <div class="coach-info">
+        <div class="coach-name">โค้ชหลิง</div>
+        <div class="coach-code">รหัส 026692 · portal.qrsfx.com</div>
+      </div>
+      <div class="coach-arrow">→</div>
     </a>
-    <a href="https://portal.qrsfx.com/register/078291" class="coach-btn">
-      🚀 สมัครกับโค้ชบิ้ว
-      <small>portal.qrsfx.com · รหัส 078291</small>
-    </a>
-    <a href="https://portal.qrsfx.com/register/078289" class="coach-btn">
-      🚀 สมัครกับโค้ชบิ๊ก
-      <small>portal.qrsfx.com · รหัส 078289</small>
-    </a>
-  </div>
 
-  <div class="notice-box">
-    <div class="notice-text">
+    <a href="https://portal.qrsfx.com/register/078291" class="coach-btn">
+      <div class="coach-avatar">👨‍💼</div>
+      <div class="coach-info">
+        <div class="coach-name">โค้ชบิ้ว</div>
+        <div class="coach-code">รหัส 078291 · portal.qrsfx.com</div>
+      </div>
+      <div class="coach-arrow">→</div>
+    </a>
+
+    <a href="https://portal.qrsfx.com/register/078289" class="coach-btn">
+      <div class="coach-avatar">👨‍💼</div>
+      <div class="coach-info">
+        <div class="coach-name">โค้ชบิ๊ก</div>
+        <div class="coach-code">รหัส 078289 · portal.qrsfx.com</div>
+      </div>
+      <div class="coach-arrow">→</div>
+    </a>
+
+    <div class="popup-notice">
       📌 หลังสมัครเสร็จแล้ว<br>
       <strong>กรุณาแจ้งแอดมิน เพื่อรับสิทธิ์การใช้งานอินดิเคเตอร์</strong>
     </div>
+
+    <span class="popup-close" onclick="hideCoachPopup()">ปิด</span>
   </div>
+</div>
 
-  <div class="admin-text">
-    หากมีข้อสงสัยสอบถามแอดมินได้ตลอด<br>
-    LINE OA : <span style="color:#E8B84B">@mtdteam</span>
-  </div>
-
-  <div class="footer">© MTD SIGNAL · MONEY TALK TRADER</div>
-
-  <script>
-    function updateCountdown() {
-      const now = new Date();
-      const end = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
-      const diff = end - now;
-      if (diff <= 0) {
-        document.getElementById('countdown-top').textContent = 'หมดเวลาแล้ว';
-        document.getElementById('countdown-main').textContent = '00 : 00 : 00 : 00';
-        return;
-      }
-      const d = Math.floor(diff / 86400000);
-      const h = Math.floor((diff % 86400000) / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-      const pad = n => String(n).padStart(2, '0');
-      document.getElementById('countdown-top').textContent =
-        `${d} วัน ${pad(h)} ชม. ${pad(m)} นาที ${pad(s)} วิ`;
-      document.getElementById('countdown-main').textContent =
-        `${pad(d)} : ${pad(h)} : ${pad(m)} : ${pad(s)}`;
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
+<script>
+  function showCoachPopup() {
+    document.getElementById('overlay').classList.add('show');
+  }
+  function hideCoachPopup() {
+    document.getElementById('overlay').classList.remove('show');
+  }
+</script>
 </body>
 </html>
