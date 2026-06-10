@@ -1,1 +1,174 @@
-openchat.html
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MTD Signal - เลือกห้อง</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: #0a0a0a;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 32px;
+      font-weight: bold;
+      color: #FFD700;
+      letter-spacing: 4px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 40px;
+      letter-spacing: 2px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #FFD700, transparent);
+      margin: 0 auto 40px;
+    }
+
+    .card {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 16px;
+      padding: 28px 24px;
+      margin-bottom: 16px;
+      text-decoration: none;
+      display: block;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      border-color: #FFD700;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.15);
+    }
+
+    .card-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+
+    .free .card-badge {
+      background: rgba(255, 215, 0, 0.1);
+      color: #FFD700;
+      border: 1px solid #FFD700;
+    }
+
+    .vip .card-badge {
+      background: rgba(255, 255, 255, 0.05);
+      color: #aaa;
+      border: 1px solid #444;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .free .card-title { color: #FFD700; }
+
+    .btn {
+      margin-top: 16px;
+      display: inline-block;
+      padding: 10px 28px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .free .btn {
+      background: #FFD700;
+      color: #000;
+    }
+
+    .vip .btn {
+      background: transparent;
+      border: 1px solid #444;
+      color: #aaa;
+    }
+
+    .footer {
+      margin-top: 32px;
+      color: #333;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="logo">MTD</div>
+    <div class="subtitle">SIGNAL ROOM</div>
+    <div class="divider"></div>
+
+    <!-- ห้องฟรี -->
+    <a class="card free" href="https://line.me/ti/g2/T7SNxNQe1sWsoAymh-vleGszkQDzO_8yVvrwtQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default">
+      <div class="card-badge">FREE</div>
+      <div class="card-title">ห้องซิก + ข่าวสาร</div>
+      <div class="card-desc">รับสัญญาณและข่าวสารทั่วไป<br>เข้าได้ฟรีทันที</div>
+      <div class="btn">เข้าห้องเลย →</div>
+    </a>
+
+    <!-- ห้อง VIP -->
+    <div class="card vip" onclick="showVipMsg()">
+      <div class="card-badge">VIP</div>
+      <div class="card-title">ห้อง VIP</div>
+      <div class="card-desc">สัญญาณพรีเมียม เฉพาะสมาชิก<br>ติดต่อแอดมินเพื่อเปิดพอร์ต</div>
+      <div class="btn">สอบถามแอดมิน</div>
+    </div>
+
+    <!-- popup vip -->
+    <div id="vipMsg" style="display:none; margin-top:16px; background:#111; border:1px solid #FFD700; border-radius:12px; padding:20px;">
+      <div style="color:#FFD700; font-weight:bold; margin-bottom:8px;">📩 ติดต่อแอดมิน</div>
+      <div style="color:#aaa; font-size:13px; line-height:1.8;">
+        ส่งข้อความหาแอดมินเพื่อเปิดพอร์ตเข้าห้อง VIP<br>
+        และรับลิ้งเข้าห้องจากทางแอดมิน
+      </div>
+    </div>
+
+    <div class="footer">© MTD SIGNAL</div>
+  </div>
+
+  <script>
+    function showVipMsg() {
+      const msg = document.getElementById('vipMsg');
+      msg.style.display = msg.style.display === 'none' ? 'block' : 'none';
+    }
+  </script>
+</body>
+</html>
